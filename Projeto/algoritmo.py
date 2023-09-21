@@ -24,9 +24,10 @@ def Main():
                             escolha_produto = int(input(">> "))
                             cliente.add_produto(escolha_produto)
                         case 3:
-                            pass
+                            print("Esse é seu carrinho: ")
                         case 4:
-                            pass
+                            exc = int (input("Digite o índice do produto que deseja excluir:"))
+                            cliente.excProduto(exc)
                         case 5:
                             pass
                         case 6:
@@ -70,5 +71,5 @@ def Main():
 
                 case _:
                     print("Opção Inexistente")
-        except Exception as erro:
+        except Exception:
             print("Opção Inválida")
