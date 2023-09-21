@@ -28,7 +28,7 @@ def Main():
                             os.system("cls")
                             print("Escolha o produto que deseja e digite seu índice para adiciona-lo ao carrinho")
                             escolha_produto = int(input(">> "))
-                            cliente.add_produto(escolha_produto)
+                            cliente.addProduto(escolha_produto)
                             os.system("pause")
                         case 3:
                             os.system("cls")
