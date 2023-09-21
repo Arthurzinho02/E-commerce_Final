@@ -59,7 +59,7 @@ class Loja:
         self.produto.append(products)
         
     def excluirProd(self,product):
-        product =+1
+        product =-1
         self.produto.pop(product)
         
     def getListaProduto(self):
@@ -87,14 +87,12 @@ class Cliente:
                 self.carrinho.append(produto)
                 break
             else:
-                ("Produto não disponível")
-            
-                
+                ("Produto não disponível")             
 
     def excProduto(self,indice):
         for produto in self.carrinho:
-            if produto == self.carrinho[indice - 1 ]:
-                self.carrinho.pop(indice)
+            if produto == self.carrinho[indice - 1]:
+                self.carrinho.pop(indice - 1)
                 break
             else:
                 print("Este produto não está no carrinho")
@@ -115,7 +113,13 @@ class Cliente:
 
 ############################################
     def finalizarCompra(self):
-        pass
+        total = 0
+        for i in self.carrinho:
+            total += i.getPreco()
+            return total
+        self.compras = self.carrinho[:]
+        del self.carrinho 
+
 
 class Produtos:
     def __init__(self, nome_prod, desc, preco):
@@ -147,9 +151,8 @@ class ADM:
     def listarClientes(self):
         loja.listarCliente()
 
-    def excluirCliente(self,nome_cli, data, cpf, ende, senha):
-        excCliente = Cliente(nome_cli, data, cpf, ende, senha)
-        loja.excluirCliente(excCliente)
+    def excluirCliente(self, cliente):
+        loja.excluirCliente(cliente)
     
 #########################################
 ############   PRODUTO  ################
@@ -169,13 +172,14 @@ class ADM:
     def listarAdms(self):
         loja.ListarAdm()
 
-    def excluirAdm(self, usuario, senha):
-        excAdm = ADM(usuario, senha)
-        loja.excAdms(excAdm)
+    def excluirAdm(self, adm):
+        loja.excAdms(adm)
 
     def comprasCliente(self):
         pass
 
     def vendasLoja(self):
         pass
-loja = Loja("Dev5 ecommerce", "Av.Brasil, Itupeva, n595", 134978740001-71)
+
+
+loja = Loja("Dev5 ecommerce", "Av.Brasil, Itupeva, nº595", 134978740001-71)
