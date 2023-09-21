@@ -79,6 +79,7 @@ def Main():
 
                         case _:
                             print("Opção Inexistente")
+                    os.system("pause")
                 case 3:
                     break
 
