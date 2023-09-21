@@ -14,6 +14,7 @@ def Main():
             
             match escolha1:
                 case 1:
+                    os.system("cls")
                     print("Página do cliente")
                     print("Escolha uma opção \n [1] Produtos disponiveis [2] Adicionar produto ao carrinho \n [3] Visualizar carrinho \n [4] Excluir produto \n [5] Finalizar compra \n [6] Retornar ao menu \n [7] Log Out" )
                     escolha2 = int(input(">> "))
