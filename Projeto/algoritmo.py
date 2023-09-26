@@ -55,23 +55,54 @@ def Main():
                     escolha3 = int(input(">> "))
                     match escolha3:
                         case 1:
-                            pass
+                            print("--Cadastrar novo cliente-- \n ")
+                            print("Para fazer o cadastro, preencha as informações abaixo: ")
+                            nome = input("Nome: ")
+                            data_nasc =input("Data de nascimento: ")
+                            cpf = int(input("CPF: "))
+                            endereco = input("Endereço: ")
+                            senha = int(input("Senha: "))
+                            loja.getMaster().cadastrarCliente(nome,data_nasc,cpf,endereco,senha)
+                            print("Novo cliente cadastrado")
+
                         case 2:
-                            pass
+                            print("--Clientes cadastrados--")
+                            loja.getMaster().listarClientes()
                         case 3:
-                            pass
+                            print("--Exclusão de clientes--")
+                            nomme = input("Informe o nome do cliente que deseja excluir: ")
+                            loja.getMaster().excluirCliente(nomme)
+                            print("Cliente excluído com sucesso!")
                         case 4:
-                            pass
+                            print("--Cadastrar novo ADM--")
+                            print("Para fazer o cadastro, preencha as informações abaixo: ")
+                            usuario = input("Usuário: ")
+                            senh = int(input("Senha: "))
+                            loja.getMaster().cadastrarAdm(usuario,senh)
+                            print("Novo administrador cadastrado com sucesso!")
                         case 5:
-                            pass
+                            print("--Administradores cadastrados--")
+                            loja.getMaster().listarAdms()
                         case 6:
-                            pass
+                            print("--Exclusão de administradores--")
+                            user = input("Informe o usuário do adm que deseja excluir: ")
+                            loja.getMaster().excluirAdm(user)
+                            print("Cliente excluído com sucesso!")
                         case 7:
-                            pass
+                            print("--Cadastro de produtos--")
+                            pro = input("Nome do produto: ")
+                            des = input("Descrição:")
+                            preco = float(input("Preço: "))
+                            loja.getMaster().cadastrarProduto(pro,des,preco)
+                            print(" Produto cadastrado! ")
                         case 8:
-                            pass
+                            print("--Lista de produtos cadastrados--")
+                            loja.getMaster().listarProduto()
                         case 9:
-                            pass
+                            print("--Exclusão de clientes--")
+                            nomme = input("Informe o nome do cliente que deseja excluir: ")
+                            loja.getMaster().excluirCliente(nomme)
+                            print("Cliente excluído com sucesso!")
                         case 10:
                             pass
                         case 11:

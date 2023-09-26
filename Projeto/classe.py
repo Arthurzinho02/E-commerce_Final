@@ -11,7 +11,9 @@ class Loja:
     def getMaster(self):
         return self.Master  
     
-    
+    def getADM(self):
+        return self.ADM
+
     ##########################################
     #Cliente
 
@@ -117,7 +119,10 @@ class Cliente:
         for i in self.carrinho:
             total += i.getPreco()
             return total
-        self.compras = self.carrinho[:]
+        if len(self.compras) == 0:
+            self.compras = self.carrinho[:]
+        else:
+            self.compras.extend(self.carrinho)
         del self.carrinho 
 
 
@@ -136,11 +141,12 @@ class Produtos:
     def getPreco(self):
         return self.preco
 
-class ADM:
+class ADM(Cliente):
     def __init__(self, usuario, senha):
         self.usuario = usuario
         self.senha = senha
         self.cliente = None
+        self.historico = {}
 
 #########################################
 #############  CLIENTE   #################
@@ -176,10 +182,14 @@ class ADM:
         loja.excAdms(adm)
 
     def comprasCliente(self):
-        pass
+        if self.cliente in self.historico:
+            self.historico[self.cliente].append(self.compras)
+        else:
+            self.cliente[self.cliente] = [self.compras]
+
 
     def vendasLoja(self):
         pass
-
+   
 
 loja = Loja("Dev5 ecommerce", "Av.Brasil, Itupeva, nº595", 134978740001-71)
