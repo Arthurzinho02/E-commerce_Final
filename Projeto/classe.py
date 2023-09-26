@@ -181,19 +181,23 @@ class ADM(Cliente):
     def excluirAdm(self, adm):
         loja.excAdms(adm)
 
-    def comprasCliente(self, cliente):
+    def historicoCompras (self):
         if self.cliente in self.historico:
             self.historico[self.cliente].append(self.compras)
         else:
-            self.cliente[self.cliente] = [self.compras]
+            self.historico[self.cliente] = [self.compras]
 
-        # Depois da escolha do cliente
-
-        for self.cliente in se
-
+        if self.cliente in self.historico:
+                historico_compras = self.historico[self.cliente]
+                print(f"Histórico de compras do cliente {self.cliente}:")
+                for compra in historico_compras:
+                    print(compra)
+        else:
+            print(f"Cliente {self.cliente} não possui histórico de compras.")
 
     def vendasLoja(self):
-        pass
+        for valor in self.historico:
+            print (valor)
    
 
 loja = Loja("Dev5 ecommerce", "Av.Brasil, Itupeva, nº595", 134978740001-71)

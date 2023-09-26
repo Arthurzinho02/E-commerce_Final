@@ -51,7 +51,7 @@ def Main():
                             print("Opção Inexistente")
                 case 2:
                     print("Página do Administrador")
-                    print("Escolha uma opção \n [1] Cadastrar cliente \n [2] Listar cliente \n [3] Excluir cliente \n [4] Cadastrar administrador \n [5] Listar administrador \n [6] Excluir administrador \n [7] Cadastrar produtos \n [8] Listar produtos \n [9] Exluir produtos \n [10] Voltar ao menu \n [11] Log Out ")
+                    print("Escolha uma opção \n [1] Cadastrar cliente \n [2] Listar cliente \n [3] Excluir cliente \n [4] Cadastrar administrador \n [5] Listar administrador \n [6] Excluir administrador \n [7] Cadastrar produtos \n [8] Listar produtos \n [9] Exluir produtos \n [10] Visualizar historico de compras dos clientes \n [11] Visualizar historico de vendas da loja \n [12] Voltar ao menu \n [13] Log out")
                     escolha3 = int(input(">> "))
                     match escolha3:
                         case 1:
@@ -62,52 +62,58 @@ def Main():
                             cpf = int(input("CPF: "))
                             endereco = input("Endereço: ")
                             senha = int(input("Senha: "))
-                            loja.getMaster().cadastrarCliente(nome,data_nasc,cpf,endereco,senha)
+                            loja.getADM().cadastrarCliente(nome,data_nasc,cpf,endereco,senha)
                             print("Novo cliente cadastrado")
 
                         case 2:
                             print("--Clientes cadastrados--")
-                            loja.getMaster().listarClientes()
+                            loja.getADM().listarClientes()
                         case 3:
                             print("--Exclusão de clientes--")
                             nomme = input("Informe o nome do cliente que deseja excluir: ")
-                            loja.getMaster().excluirCliente(nomme)
+                            loja.getADM().excluirCliente(nomme)
                             print("Cliente excluído com sucesso!")
                         case 4:
                             print("--Cadastrar novo ADM--")
                             print("Para fazer o cadastro, preencha as informações abaixo: ")
                             usuario = input("Usuário: ")
                             senh = int(input("Senha: "))
-                            loja.getMaster().cadastrarAdm(usuario,senh)
+                            loja.getADM().cadastrarAdm(usuario,senh)
                             print("Novo administrador cadastrado com sucesso!")
                         case 5:
                             print("--Administradores cadastrados--")
-                            loja.getMaster().listarAdms()
+                            loja.getADM().listarAdms()
                         case 6:
                             print("--Exclusão de administradores--")
                             user = input("Informe o usuário do adm que deseja excluir: ")
-                            loja.getMaster().excluirAdm(user)
+                            loja.getADM().excluirAdm(user)
                             print("Cliente excluído com sucesso!")
                         case 7:
                             print("--Cadastro de produtos--")
                             pro = input("Nome do produto: ")
                             des = input("Descrição:")
                             preco = float(input("Preço: "))
-                            loja.getMaster().cadastrarProduto(pro,des,preco)
+                            loja.getADM().cadastrarProduto(pro,des,preco)
                             print(" Produto cadastrado! ")
                         case 8:
                             print("--Lista de produtos cadastrados--")
-                            loja.getMaster().listarProduto()
+                            loja.getADM().listarProduto()
                         case 9:
                             print("--Exclusão de produtos--")
                             proo = input("Informe o nome do produto que deseja excluir: ")
-                            loja.getMaster().excluirCliente(proo)
+                            loja.getADM().excluirCliente(proo)
                             print("Produto excluído com sucesso!")
                         case 10:
-                            pass
+                            print("--Clientes cadastrados--")
+                            loja.getADM().listarClientes()
+                            hiscli = input ("Qual o nome do cliente que você deseja olhar o histórico?")
+                            loja.historicoCompras(hiscli)
                         case 11:
+                            loja.vendasLoja()
+                        case 12:
+                            os.system('cls')
+                        case 13:
                             break
-
                         case _:
                             print("Opção Inexistente")
                     
