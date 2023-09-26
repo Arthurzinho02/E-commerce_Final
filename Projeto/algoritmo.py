@@ -99,10 +99,10 @@ def Main():
                             print("--Lista de produtos cadastrados--")
                             loja.getMaster().listarProduto()
                         case 9:
-                            print("--Exclusão de clientes--")
-                            nomme = input("Informe o nome do cliente que deseja excluir: ")
-                            loja.getMaster().excluirCliente(nomme)
-                            print("Cliente excluído com sucesso!")
+                            print("--Exclusão de produtos--")
+                            proo = input("Informe o nome do produto que deseja excluir: ")
+                            loja.getMaster().excluirCliente(proo)
+                            print("Produto excluído com sucesso!")
                         case 10:
                             pass
                         case 11:

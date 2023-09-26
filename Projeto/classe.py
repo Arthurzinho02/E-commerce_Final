@@ -70,12 +70,12 @@ class Loja:
 
     
 class Cliente:
-    def __init__(self, nome_cli, data, cpf, ende, senha):
-        self.nome_cli = nome_cli
-        self.data = data
-        self.cpf = cpf
-        self.ende = ende
-        self.senha = senha
+    def __init__(self):
+        self.nome_cli = None
+        self.data = None
+        self.cpf = None
+        self.ende = None
+        self.senha = None
         self.carrinho = []
     
    
@@ -181,11 +181,15 @@ class ADM(Cliente):
     def excluirAdm(self, adm):
         loja.excAdms(adm)
 
-    def comprasCliente(self):
+    def comprasCliente(self, cliente):
         if self.cliente in self.historico:
             self.historico[self.cliente].append(self.compras)
         else:
             self.cliente[self.cliente] = [self.compras]
+
+        # Depois da escolha do cliente
+
+        for self.cliente in se
 
 
     def vendasLoja(self):
