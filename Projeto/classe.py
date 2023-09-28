@@ -5,21 +5,25 @@ class Loja:
         self.CNPJ = CNPJ
         self.clientes = []
         self.produto = []
-        self.ADM = []
         self.Master = ADM("Master", 123)
+        self.ADM = [self.Master]
         
-    def getMaster(self):
-        return self.Master  
+    def getCliente(self, nome_cli, senha):
+        for cliente in self.clientes:
+            if cliente.nome_cli == nome_cli and cliente.senha == senha:
+                return cliente
     
-    def getADM(self):
-        return self.ADM
+    def getADM(self, usuario, senha):
+        for adm in self.ADM:
+            if adm.usuario == usuario and adm.senha == senha:
+                return adm
 
     ##########################################
     #Cliente
 
     def listarCliente(self):
         for cliente in self.clientes:
-            print(f"Nome: {cliente.nome_cli}, Data de Nascimento: {cliente.data}, CPF: {cliente.cpf}, Endereço: {cliente.ende}")
+            print(f"Nome: {cliente.nome_cli}, Data de Nascimento: {cliente.data}, CPF: {cliente.cpf}, Endereço: {cliente.ende}, Senha: {cliente.senha}")
     
     def adicionarCliente(self, cliente):
         self.clientes.append(cliente)
@@ -29,17 +33,17 @@ class Loja:
     
     def loginCliente(self, nome_cli, senha):
         for cliente in self.clientes:
-            if cliente.nome == nome_cli and cliente.senha == senha:
+            if cliente.nome_cli == nome_cli and cliente.senha == senha:
                 return "ACESSO LIBERADO"
             else:
-                return "ACESSO NEGADO. Digite os dados novamente ou faça seu cadastro."
+                return "ACESSO NEGADO. Digite os dados novamente."
 
     ##############################################
     #ADM
 
     def ListarAdm(self):
         for adm in self.ADM:
-            print(f"Usuario: {adm.usuario}")
+            print(f"Usuario: {adm.usuario}, Senha {adm.senha}")
 
     def adicionarAdm(self, adm):
         self.ADM.append(adm)
@@ -49,7 +53,7 @@ class Loja:
             if adm.usuario == usuario and adm.senha == senha:
                 return "ACESSO LIBERADO"
             else:
-                return "ACESSO NEGADO. Digite novamente ou faça seu cadastro."
+                return "ACESSO NEGADO. Digite os dados novamente."
             
     def excAdms(self, excAdm):
         self.ADM.pop(excAdm)
@@ -70,16 +74,15 @@ class Loja:
 
     
 class Cliente:
-    def __init__(self):
-        self.nome_cli = None
-        self.data = None
-        self.cpf = None
-        self.ende = None
-        self.senha = None
+    def __init__(self, nome, data, cpf, ende, senha):
+        self.nome_cli = nome
+        self.data = data
+        self.cpf = cpf
+        self.ende = ende
+        self.senha = senha
         self.carrinho = []
+        self.compras = []
     
-   
-
 ######################################
 # Ana Júlia
 
@@ -125,6 +128,9 @@ class Cliente:
             self.compras.extend(self.carrinho)
         del self.carrinho 
 
+    def getCompras(self):
+        return self.compras
+
 
 class Produtos:
     def __init__(self, nome_prod, desc, preco):
@@ -141,11 +147,10 @@ class Produtos:
     def getPreco(self):
         return self.preco
 
-class ADM(Cliente):
+class ADM:
     def __init__(self, usuario, senha):
         self.usuario = usuario
         self.senha = senha
-        self.cliente = None
         self.historico = {}
 
 #########################################
@@ -181,11 +186,11 @@ class ADM(Cliente):
     def excluirAdm(self, adm):
         loja.excAdms(adm)
 
-    def historicoCompras (self):
-        if self.cliente in self.historico:
-            self.historico[self.cliente].append(self.compras)
+    def historicoCompras (self, usuario, senha):
+        if loja.getCliente(usuario, senha) in self.historico:
+            self.historico[loja.getCliente(usuario, senha)].append(loja.getCliente(usuario, senha).getCompras())
         else:
-            self.historico[self.cliente] = [self.compras]
+            self.historico[loja.getCliente(usuario, senha)] = [loja.getCliente(usuario, senha).getCompras()]
 
         if self.cliente in self.historico:
                 historico_compras = self.historico[self.cliente]
@@ -200,4 +205,4 @@ class ADM(Cliente):
             print (valor)
    
 
-loja = Loja("Dev5 ecommerce", "Av.Brasil, Itupeva, nº595", 134978740001-71)
+loja = Loja("Dev5 ecommerce", "Av.Brasil, Itupeva, nº595", 13497874000171)
