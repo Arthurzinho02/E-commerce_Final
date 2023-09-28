@@ -145,7 +145,7 @@ Caso o usuário coloque no input uma informação diferente do que sistema esper
 
 - `finalizarCompra`: 
     Finaliza a compra após a confirmação do cliente.
-    
+
 - `getCompras`: 
     Esse “get” irá retornar a lista “compras” (self.compras).
 
@@ -158,11 +158,11 @@ Caso o usuário coloque no input uma informação diferente do que sistema esper
 #### Métodos:
 
 - `getNome_P`: 
-    Retorna o nome do produto.
+    Tem o objetivo de retornar  o nome de um produto
 - `getDesc`: 
-    Retorna a descrição do produto.
+    Tem o objetivo de retornar  a descrição de um produto.
 - `getPreco`: 
-    Retorna o preço do produto.
+    Tem o objetivo de retornar o preço de um produto.
 
 ### **ADM**
 
