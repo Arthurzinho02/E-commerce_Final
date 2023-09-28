@@ -1,4 +1,4 @@
-from classe import *
+from classe import*
 import os
 
 def Main():
