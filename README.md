@@ -1,20 +1,24 @@
 # E-commerce_Final
 
 # Documentação do Projeto de E-commerce
+## USUÁRIO ROOT:
+Usuário = Master
+Senha = 123
+## -> Utilização
 
 O projeto de E-commerce desenvolvido pelo Grupo 5 utiliza todos os conceitos de Programação Orientada a Objetos adquiridos até o momento do curso. O objetivo do sistema é conter três telas, com a seguinte formatação:
-
-## -> Utilização
 
 ### Tela Um - Login
 
 Na Tela Um, encontra-se a área de login com ações que podem ser executadas pelo Cliente e pelo Administrador.
 
+### Login Cliente
+
 - Ao selecionar 1 no teclado, o usuário será direcionado para a área de login do Cliente, onde ele deve fornecer seu nome e sua senha. Se estas informações estiverem registradas, o cliente existe no sistema, desta forma, terá o acesso liberado e poderá realizar as ações do mesmo. Se o cliente ainda não existe, é necessário que o administrador o registre no sistema.
-
 - Se os dados colocados pelo usuário estiverem incorretos e/ou não existirem, o acesso será negado e retornará ao menu.
-
 - Ao selecionar 3 no teclado, o software fechará.
+
+### Login Administrador
 
 - Ao selecionar 2 no teclado, o usuário será direcionado para a área de login do Administrador, em que ele deverá fornecer as informações nome e senha como informações de login. Se estas informações estiverem registradas, logo, o Administrador existe no sistema, desta forma, terá o acesso liberado e poderá realizar as ações do mesmo. Se o administrador ainda não existe, é necessário que outro administrador ou o usuário Master o registre no sistema.
 
@@ -30,9 +34,7 @@ A Tela Dois é acessada a partir do login do Cliente, onde ele poderá realizar 
 
 - Ao selecionar 4 no teclado, o Cliente acessará a área do carrinho novamente, entretanto, com a ação de excluir um produto do mesmo. Ele escolherá o item a ser excluído a partir do input do índice que está sendo indicado na listagem do carrinho. Após realizar a exclusão, o cliente retornará ao menu.
 
-- Ao selecionar 5 no teclado, o Cliente será direcionado para a finalização da compra, onde poderá visualizar quais e quantos produtos estão em seu carrinho. Ao selecionar 1, que corresponde a “SIM”, os valores dos produtos serão somados e mostrados para o cliente e a compra será finalizada.
-
-- Ao selecionar 2, que corresponde a “NÃO”, a conta não será fechada e o Cliente ainda poderá realizar alterações no carrinho.
+- Ao selecionar 5 no teclado, o Cliente será direcionado para a finalização da compra, onde poderá visualizar quais e quantos produtos estão em seu carrinho. Ao selecionar 1, que corresponde a “SIM”, os valores dos produtos serão somados e mostrados para o cliente e a compra será finalizada. Ao selecionar 2, que corresponde a “NÃO”, a conta não será fechada e o Cliente ainda poderá realizar alterações no carrinho.
 
 - Ao selecionar 6 no teclado, o usuário retornará para a Tela Um, onde estão os logins de Cliente e Usuário.
 
@@ -68,11 +70,9 @@ A Tela Três é acessada a partir do login do Administrador, onde ele poderá re
 
 - Ao selecionar 13, o Administrador fechará o sistema.
 
-Atenção aos tipos de informações!
+### Atenção aos tipos de informações!
 
-No sistema, utilizamos o Try except para tratar erros do software.
-
-Caso o usuário coloque no input uma informação diferente do que sistema espera, por exemplo, caso digite “faca” em um input de int (número inteiro), o sistema informará que a Opção é inválida.
+- No sistema, utilizamos o Try except para tratar erros do software. Caso o usuário coloque no input uma informação diferente do que sistema espera, por exemplo, caso digite “faca” em um input de int (número inteiro), o sistema informará que a Opção é inválida.
 
 ## → Classes
 
@@ -84,6 +84,10 @@ Caso o usuário coloque no input uma informação diferente do que sistema esper
 
 #### Métodos:
 
+- `getListaCliente`:
+    Método para retornar a lista de clientes.
+- `getListaProduto`:
+    Método que retorna a lista de produtos disponíveis na loja.
 - `getCliente`:
     Método que tem o objetivo de permitir o acesso ao objeto cliente.
 
@@ -137,9 +141,6 @@ Caso o usuário coloque no input uma informação diferente do que sistema esper
 - `excProduto`: 
     Esse método será usado pelo cliente, para que ele possa excluir algum produto de seu carrinho, conforme escolhido por ele.
 
-- `listarProduto`: 
-    Esta função, quando chamada irá listar os produtos disponíveis na loja, apresentando seu nome, descrição e preço por unidade. e relacionando um índice a cada item em ordem crescente.
-
 - `listarCarrinho`: 
     Esse método listará os produtos que o cliente tiver adicionado ao seu carrinho, apresentará seu nome, descrição e preço, e relacionará a um índice.
 
@@ -174,22 +175,31 @@ Caso o usuário coloque no input uma informação diferente do que sistema esper
 
 - Todos os métodos dentro dessa classe só podem ser acessados pelo administrador.
 - `cadastrarCliente`: 
-    Cria um novo cliente.
+    Esse método irá criar um objeto, instanciando a classe Cliente, e colocará as informações necessárias para o cadastro, dessa forma, será cadastrado um novo cliente. 
+
 - `listarClientes`: 
-    Lista todos os clientes cadastrados na loja.
+    Irá puxar o método de listar clientes, da loja, e assim irá apresentar a lista dos clientes cadastrados
+
 - `excluirClientes`: 
-    Exclui um cliente cadastrado.
+    Esse método irá puxar o método de exclusão da classe Loja e assim irá apagar o cadastro de um cliente conforme escolhido pelo administrador. 
+
 - `cadastrarProduto`: 
-    Adiciona produtos à lista de produtos disponíveis.
+    Com esse método, foi criado um objeto ao instanciar a classe Produtos e passar seus parâmetros, que são suas informações (nome, descrição e preço). Por meio disso é chamado o método de cadastrar produtos para que dessa forma, os produtos sejam cadastrados e adicionados a lista de produtos disponíveis.
+
 - `excluirProduto`: 
-    Exclui um produto da lista de produtos disponíveis.
+    Com esse método é possível que o administrador exclua um produto que tenha sido cadastrado na lista de produtos disponíveis.
+
 - `cadastrarAdm`: 
-    'Cadastra novos administradores.
+    Nesse método é instanciado um objeto da classe ADM e colocado os parâmatros necessários para criação de um novo administrador,  e então chamado o método da classe Loja de adicionar adm para que por fim seja cadastrado.
+
 - `listarAdms`: 
-    Lista todos os administradores cadastrados.
+    Essa função irá puxar a lista de administradores, para que seja possível ver todos os adms cadastrados no sistema.
+
 - `excluirAdm`: 
-    Exclui o cadastro de um administrador.
+    Esse  método é para que o administrador exclua um outro admin (escolhido) que tenha sido cadastrado, chamando o método de exclusão presente na classe Loja.
+
 - `historicoCompras`: 
-    Mostra o histórico de compras de cada cliente.
+    Este método irá mostrar para o administrador o histórico de compras de cada cliente que estiver cadastrado, através do dicionário criado no construtor da classe ADM, onde chave é o usuário e a senha, e valor são as compras do usuário.
+    
 - `vendasLoja`: 
-    Mostra todas as vendas da loja.
+    Esta função irá retornar todas as vendas da loja, onde valor são as compras, então caso as compras estejam no dicionário, elas serão listadas.

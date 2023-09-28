@@ -8,6 +8,9 @@ class Loja:
         self.Master = ADM("Master", 123)
         self.ADM = [self.Master]
 
+    def getListaCliente(self):
+        return self.clientes
+    
     def getListaProduto(self):
         return self.produto
         
@@ -15,7 +18,7 @@ class Loja:
         number = 0
         for i in self.produto:
             number += 1
-            print(f"{number}- Nome: {i.getNome_P()} | Descrição: {i.getDesc()} | Preço: R${i.getPreco()}")
+            print(f"{number}- Nome: {i.getNome_P()} | Descrição: {i.getDesc()} | Preço: R${i.getPreco():.2f}")
 
     def getCliente(self, nome_cli, senha):
         for cliente in self.clientes:
@@ -90,9 +93,8 @@ class Cliente:
         self.senha = senha
         self.carrinho = []
         self.compras = []
-    
-######################################
-# Ana Júlia
+
+
 
     def addProduto(self,indice):
         for produto in loja.getListaProduto():
@@ -110,33 +112,30 @@ class Cliente:
             else:
                 print("Este produto não está no carrinho")
 
-#####################################
-# Arthur Matheus de Moura  
-    # def listarProduto(self):
-    #     number = 0
-    #     for i in loja.getListaProduto():
-    #         number += 1
-    #         print(f"{number}- Nome: {i.getNome_P()} | Descrição: {i.getDesc()} | Preço: R${i.getPreco()}") 
-    
+
+
+
     def listarCarrinho(self):
         number = 0
         total = 0
         for i in self.carrinho:
             number += 1
             total += i.getPreco()
-            print(f"{number}- Nome: {i.getNome_P()} | Descrição: {i.getDesc()} | Preço: R${i.getPreco()}")
+            print(f"{number}- Nome: {i.getNome_P()} | Descrição: {i.getDesc()} | Preço: R${i.getPreco():.2f}")
         print(f"Total: R${total}")
-############################################
+
     def finalizarCompra(self):
         total = 0
         for i in self.carrinho:
             total += i.getPreco()
-            return total
+            
         if len(self.compras) == 0:
             self.compras = self.carrinho[:]
         else:
             self.compras.extend(self.carrinho)
-        del self.carrinho 
+
+        self.carrinho = []
+        return total
 
     def getCompras(self):
         return self.compras
@@ -196,19 +195,22 @@ class ADM:
     def excluirAdm(self, adm):
         loja.excAdms(adm)
 
-    def historicoCompras (self, usuario, senha):
-        if loja.getCliente(usuario, senha) in self.historico:
-            self.historico[loja.getCliente(usuario, senha)].append(loja.getCliente(usuario, senha).getCompras())
-        else:
-            self.historico[loja.getCliente(usuario, senha)] = [loja.getCliente(usuario, senha).getCompras()]
-
-        if self.cliente in self.historico:
-                historico_compras = self.historico[self.cliente]
-                print(f"Histórico de compras do cliente {self.cliente}:")
-                for compra in historico_compras:
-                    print(compra)
-        else:
-            print(f"Cliente {self.cliente} não possui histórico de compras.")
+    def historicoCompras(self, usuario, senha):
+        for cliente in loja.getListaCliente():
+            if cliente.nome_cli == usuario and cliente.senha == senha:                
+                compras = loja.getCliente(usuario, senha).getCompras()
+                if cliente in self.historico:
+                    self.historico[cliente].append(compras)
+                else:
+                    self.historico[cliente] = [compras]
+                
+                historico_compras = self.historico[cliente]
+                print(f"Histórico de compras do cliente {cliente.nome_cli}:")
+                for n in historico_compras:
+                    for i in n:
+                        print(f"Nome: {i.getNome_P()} | Descrição: {i.getDesc()} | Preço: R${i.getPreco():.2f}")
+            # else:
+            #     print(f"Cliente {usuario} não encontrado.")
 
     def vendasLoja(self):
         for valor in self.historico:
