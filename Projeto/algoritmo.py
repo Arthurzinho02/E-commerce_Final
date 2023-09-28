@@ -64,7 +64,7 @@ def Main():
                                 case _:
                                     print("Opção Inexistente")
                                     
-                        case "ACESSO NEGADO. Digite os dados novamente.":
+                        case _:
                             os.system("cls")
                             
                 case 2:
@@ -75,8 +75,10 @@ def Main():
 
                     acessoAdm = loja.loginAdm(nomee_adm, senhha_adm)
 
+                    print(acessoAdm)
+
                     match acessoAdm:
-                        case "ACESSO LIBERADO":
+                        case 'ACESSO LIBERADO':
                             os.system ("cls")
                             print("Página do Administrador")
                             print("Escolha uma opção \n [1] Cadastrar cliente \n [2] Listar cliente \n [3] Excluir cliente \n [4] Cadastrar administrador \n [5] Listar administrador \n [6] Excluir administrador \n [7] Cadastrar produtos \n [8] Listar produtos \n [9] Exluir produtos \n [10] Visualizar historico de compras dos clientes \n [11] Visualizar historico de vendas da loja \n [12] Voltar ao menu \n [13] Log out")
@@ -156,7 +158,7 @@ def Main():
                                     break
                                 case _:
                                     print("Opção Inexistente")
-                        case "ACESSO NEGADO. Digite os dados novamente.":
+                        case _:
                             os.system("cls")
                 case 3:
                     break

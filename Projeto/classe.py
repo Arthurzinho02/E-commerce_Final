@@ -35,15 +35,13 @@ class Loja:
         for cliente in self.clientes:
             if cliente.nome_cli == nome_cli and cliente.senha == senha:
                 return "ACESSO LIBERADO"
-            else:
-                return "ACESSO NEGADO. Digite os dados novamente."
 
     ##############################################
     #ADM
 
     def ListarAdm(self):
         for adm in self.ADM:
-            print(f"Usuario: {adm.usuario}, Senha {adm.senha}")
+            print(f"Usuario: {adm.usuario}, Senha: {adm.senha}")
 
     def adicionarAdm(self, adm):
         self.ADM.append(adm)
@@ -52,8 +50,7 @@ class Loja:
         for adm in self.ADM:
             if adm.usuario == usuario and adm.senha == senha:
                 return "ACESSO LIBERADO"
-            else:
-                return "ACESSO NEGADO. Digite os dados novamente."
+            
             
     def excAdms(self, excAdm):
         self.ADM.pop(excAdm)
