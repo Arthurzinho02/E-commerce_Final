@@ -7,7 +7,16 @@ class Loja:
         self.produto = []
         self.Master = ADM("Master", 123)
         self.ADM = [self.Master]
+
+    def getListaProduto(self):
+        return self.produto
         
+    def listarProduto(self):
+        number = 0
+        for i in self.produto:
+            number += 1
+            print(f"{number}- Nome: {i.getNome_P()} | Descrição: {i.getDesc()} | Preço: R${i.getPreco()}")
+
     def getCliente(self, nome_cli, senha):
         for cliente in self.clientes:
             if cliente.nome_cli == nome_cli and cliente.senha == senha:
@@ -22,14 +31,16 @@ class Loja:
     #Cliente
 
     def listarCliente(self):
+        total = 0
         for cliente in self.clientes:
-            print(f"Nome: {cliente.nome_cli}, Data de Nascimento: {cliente.data}, CPF: {cliente.cpf}, Endereço: {cliente.ende}, Senha: {cliente.senha}")
+            total += 1
+            print(f"{total}. Nome: {cliente.nome_cli}, Data de Nascimento: {cliente.data}, CPF: {cliente.cpf}, Endereço: {cliente.ende}, Senha: {cliente.senha}")
     
     def adicionarCliente(self, cliente):
         self.clientes.append(cliente)
         
     def excluirCliente(self, cliente):
-        self.clientes.pop(cliente)
+        self.clientes.pop(cliente - 1)
     
     def loginCliente(self, nome_cli, senha):
         for cliente in self.clientes:
@@ -40,8 +51,10 @@ class Loja:
     #ADM
 
     def ListarAdm(self):
+        total = 0
         for adm in self.ADM:
-            print(f"Usuario: {adm.usuario}, Senha: {adm.senha}")
+            total +=1
+            print(f"{total}. Usuario: {adm.usuario}, Senha: {adm.senha}")
 
     def adicionarAdm(self, adm):
         self.ADM.append(adm)
@@ -53,7 +66,7 @@ class Loja:
             
             
     def excAdms(self, excAdm):
-        self.ADM.pop(excAdm)
+        self.ADM.pop(excAdm - 1)
 
     #################################################
     #Produtos
@@ -62,11 +75,9 @@ class Loja:
         self.produto.append(products)
         
     def excluirProd(self,product):
-        product =-1
+        product -=1
         self.produto.pop(product)
         
-    def getListaProduto(self):
-        return self.produto
         
 
     
@@ -83,7 +94,7 @@ class Cliente:
 ######################################
 # Ana Júlia
 
-    def addProduto(self, indice):
+    def addProduto(self,indice):
         for produto in loja.getListaProduto():
             if produto == loja.getListaProduto()[indice - 1]:
                 self.carrinho.append(produto)
@@ -101,18 +112,20 @@ class Cliente:
 
 #####################################
 # Arthur Matheus de Moura  
-    def listarProduto(self):
-        number = 0
-        for i in loja.getListaProduto():
-            number += 1
-            print(f"{number}- Nome: {i.getNome_P()} | Descrição: {i.getDesc()} | Preço: R${i.getPreco()}") 
+    # def listarProduto(self):
+    #     number = 0
+    #     for i in loja.getListaProduto():
+    #         number += 1
+    #         print(f"{number}- Nome: {i.getNome_P()} | Descrição: {i.getDesc()} | Preço: R${i.getPreco()}") 
     
     def listarCarrinho(self):
         number = 0
+        total = 0
         for i in self.carrinho:
-            number += 0
+            number += 1
+            total += i.getPreco()
             print(f"{number}- Nome: {i.getNome_P()} | Descrição: {i.getDesc()} | Preço: R${i.getPreco()}")
-
+        print(f"Total: R${total}")
 ############################################
     def finalizarCompra(self):
         total = 0
